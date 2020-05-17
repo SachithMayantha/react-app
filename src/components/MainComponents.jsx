@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ItemBox from './itemBox/ItemBox';
 
 class MainComponents extends Component {
     
@@ -8,18 +9,25 @@ class MainComponents extends Component {
         //this is a javascript object 
         this.state={
             //use json(key-value pairs) format
-            firstname: 'Mayantha',
+            name: 'Kamal',
             lastname : 'Fernando'
         }
     }
-    
+    changeName=()=>{
+        //setState method use to change all states
+        this.setState({
+            lastname : 'Perera'
+        })
+        
+    }
+
     //method of component
     render() {
         return (
             <div>
-                <h1>Hello {this.state.firstname} {this.state.lastname}.!</h1>
+                <ItemBox/>
             </div>
-        );
+        ); 
     }
 }
 
