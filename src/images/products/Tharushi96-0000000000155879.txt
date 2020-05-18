@@ -1,0 +1,43 @@
+test=int(input())
+final=[]
+for i in range(test):
+    [n,r,c,sr,sc]=map(int,input().split())
+    steps=input()
+    dire={'N':0,'E':0,'W':0,'S':0}
+    j=0
+    while j<(len(steps)-1):
+        if steps[j]==steps[j+1]:
+            j+=1
+            dire[steps[j]]+=1
+        elif (steps[j]=='E' and steps[j+1]=='W') or (steps[j]=='W' and steps[j+1]=='E'):
+            dire[steps[j]]+=1
+            cur=steps[j]
+            count=j
+            while(count>0 and cur==steps[count]):
+                count-=1
+            dire[steps[j+1]]+=(j-count+1)
+            j+=1
+        elif (steps[j]=='N' and steps[j+1]=='S') or (steps[j]=='S' and steps[j+1]=='N'):
+            dire[steps[j]]+=1
+            cur=steps[j]
+            count=j
+            while(count>0 and cur==steps[count]):
+                count-=1
+            dire[steps[j+1]]+=(j-count+1)
+            j+=1         
+         
+        else:
+            dire[steps[j]]+=1
+            j+=1
+            if j==len(steps)-1:
+                dire[steps[j]]+=1
+
+    sc=sc+dire['E']-dire['W']
+    sr=sr+dire['S']-dire['N']
+    final.append([sr,sc])
+    
+for i in range(len(final)):
+    print('Case #',end='')
+    print(i+1,end='')
+    print(': ',end='')
+    print(final[i][0],final[i][1])
